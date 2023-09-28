@@ -1,72 +1,114 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
-// import "./style.css";
-import logo from "../assets/logo.png";
+import logo from "../assets/logo_white.png";
 import "../fonts/fonts.css";
+import {
+  Box,
+  Button,
+  Flex,
+  FormLabel,
+  Heading,
+  Icon,
+  Img,
+  Input,
+  InputGroup,
+  InputLeftElement,
+  Text,
+  Select,
+} from "@chakra-ui/react";
+import { BsArrowRight } from "react-icons/bs";
+import { MdEmail } from "react-icons/md";
+import { GoPasskeyFill } from "react-icons/go";
+import { Link } from "react-router-dom";
 
-const SignUp = () => {
+const LoginPage = () => {
   return (
-    <div className="container">
-      <div className="mini-container">
-        <div className="left-side">
-          <h1>
-            sign up <span>&#8594;</span>
-          </h1>
-          <p>Your favorite attendance management system</p>
-        </div>
-        <div className="right-side">
-          <div className="logo">
-            <img src={logo} alt="Ahaa Logo" />
-          </div>
-          <p>Hello! Create your account</p>
-          <form>
-            <div className="form-group">
-              <label htmlFor="email" style={{ color: "gray" }}>
-                Email Address
-              </label>
-              <div className="input-icon">
-                <span className="icon">&#x2709;</span>
-                <input type="email" id="email" placeholder="Your email" />
-              </div>
-            </div>
-            <div className="form-group">
-              <label htmlFor="password" style={{ color: "gray" }}>
-                Password
-              </label>
-              <div className="input-icon">
-                <span className="icon">&#x1F512;</span>
-                <input
-                  type="password"
-                  id="password"
-                  placeholder="********"
-                />
-              </div>
-            </div>
-            <div className="form-group">
-              <label htmlFor="password" style={{ color: "gray" }}>
-                Confirm Password
-              </label>
-              <div className="input-icon">
-                <span className="icon">&#x1F512;</span>
-                <input
-                  type="password"
-                  id="password"
-                  placeholder="********"
-                />
-              </div>
-            </div>
-
-            <button type="submit" style={{ width: "100%", fontSize: "18px" }}>
-              Sign Up
-            </button>
-            <div className="login">
-              Already have an account? <span>Log In</span>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
+    <Flex
+      bgGradient="linear(to-r, #1E63E1 50%, #fff 50%)"
+      minH="100vh"
+      justify="center"
+      align="center"
+    >
+      <Flex rounded="xl" shadow="dark-lg" padding={5} width={980}>
+        <Flex
+          w="50%"
+          align="start"
+          justify="center"
+          flexDir="column"
+          color="#fff"
+        >
+          <Box mx="auto">
+            <Flex align="center" gap={10}>
+              <Heading textTransform="uppercase">Sign Up</Heading>
+              <Icon as={BsArrowRight} fontSize="2xl" />
+            </Flex>
+            <Text fontSize="xl">
+              Your favorite attendance management system
+            </Text>
+          </Box>
+        </Flex>
+        <Flex flexDir="column" className="right-side" mx="auto" my={5} gap={5}>
+          <Box className="logo" textAlign="center">
+            <Img src={logo} alt="Ahaa Logo" />
+            <Text fontSize="sm" fontWeight="semibold" color="gray.400">
+              Hello! Please create your account.
+            </Text>
+          </Box>
+          <Box as="form">
+            <FormLabel color="gray.600">Email address</FormLabel>
+            <InputGroup mb={5}>
+              <InputLeftElement pointerEvents="none">
+                <Icon as={MdEmail} color="#1E63E1" />
+              </InputLeftElement>
+              <Input
+                type="email"
+                name="email"
+                placeholder="Enter your email address"
+                borderColor="gray.300"
+                shadow="lg"
+                _placeholder={{ fontSize: "xs" }}
+              />
+            </InputGroup>
+            <FormLabel color="gray.600">Password</FormLabel>
+            <InputGroup mb={5}>
+              <InputLeftElement pointerEvents="none">
+                <Icon as={GoPasskeyFill} color="#1E63E1" />
+              </InputLeftElement>
+              <Input
+                type="password"
+                name="password"
+                placeholder="Password"
+                borderColor="gray.300"
+                shadow="lg"
+                _placeholder={{ fontSize: "xs" }}
+              />
+            </InputGroup>
+            <FormLabel color="gray.600">Role</FormLabel>
+            <Select placeholder="Role" borderColor="gray.300" shadow="lg" size='md'>
+              <option value="option1">EIT</option>
+              <option value="option2">MEST Staff</option>
+            </Select>
+            <Button
+              variant="solid"
+              bg="#1E63E1"
+              color="#fff"
+              w="full"
+              my={5}
+              _hover={{ bg: "#1E63E1" }}
+            >
+              Sign In
+            </Button>
+            <Text>
+              {"Don't have an account? "}
+              <Text as={Link} to="signup" color="#1E63E1" fontWeight="bold">
+                Log In
+              </Text>
+            </Text>
+          </Box>
+        </Flex>
+      </Flex>
+    </Flex>
   );
 };
 
-export default SignUp;
+export default LoginPage;
