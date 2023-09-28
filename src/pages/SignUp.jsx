@@ -99,7 +99,7 @@ const LoginPage = () => {
               Sign In
             </Button>
             <Text>
-              {"Don't have an account? "}
+              {"Already have an account? "}
               <Text as={Link} to="signup" color="#1E63E1" fontWeight="bold">
                 Log In
               </Text>
