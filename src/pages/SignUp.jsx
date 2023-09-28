@@ -56,7 +56,7 @@ const LoginPage = () => {
           </Box>
           <Box as="form">
             <FormLabel color="gray.600">Email address</FormLabel>
-            <InputGroup mb={5}>
+            <InputGroup mb={7}>
               <InputLeftElement pointerEvents="none">
                 <Icon as={MdEmail} color="#1E63E1" />
               </InputLeftElement>
@@ -69,6 +69,12 @@ const LoginPage = () => {
                 _placeholder={{ fontSize: "xs" }}
               />
             </InputGroup>
+
+            <Select placeholder="Role" borderColor="gray.300" shadow="lg" size='md' mb={5} >
+              <option value="option1">EIT</option>
+              <option value="option2">MEST Staff</option>
+            </Select>
+
             <FormLabel color="gray.600">Password</FormLabel>
             <InputGroup mb={5}>
               <InputLeftElement pointerEvents="none">
@@ -83,11 +89,7 @@ const LoginPage = () => {
                 _placeholder={{ fontSize: "xs" }}
               />
             </InputGroup>
-            <FormLabel color="gray.600">Role</FormLabel>
-            <Select placeholder="Role" borderColor="gray.300" shadow="lg" size='md'>
-              <option value="option1">EIT</option>
-              <option value="option2">MEST Staff</option>
-            </Select>
+
             <Button
               variant="solid"
               bg="#1E63E1"
