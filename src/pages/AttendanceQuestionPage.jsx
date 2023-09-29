@@ -66,6 +66,16 @@ const AttendanceQuestion = () => {
         console.log("Location:", locationRef.current);
       });
     }
+
+    toast({
+      title: "Success",
+      description:
+        "Your feedback and attendance have been recorded successfully. Enjoy the rest of your class.",
+      status: "info",
+      duration: 7000, // 20 seconds
+      colorScheme: "blue",
+    });
+    setAnswer("");
   };
   
   return (
