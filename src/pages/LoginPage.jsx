@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
-// import "./style.css";
+import React, { useState } from "react";
 import logo from "../assets/logo_white.png";
 import "../fonts/fonts.css";
 import {
@@ -17,13 +16,62 @@ import {
   InputGroup,
   InputLeftElement,
   Text,
+  useToast,
 } from "@chakra-ui/react";
 import { BsArrowRight } from "react-icons/bs";
 import { MdEmail } from "react-icons/md";
 import { GoPasskeyFill } from "react-icons/go";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { signIn } from "../config/firebase";
 
 const LoginPage = () => {
+  const [login, setLogin] = useState({
+    email: "",
+    password: "",
+  });
+  const { email, password } = login;
+  const [error, setError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const toast = useToast();
+  const navigate = useNavigate();
+
+  const handleChange =(e)=> {
+     const { name, value } = e.target;
+    setLogin((prev) => ({ ...prev, [name]: value }));
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    // console.log(login);
+    setIsLoading(true);
+    try {
+      await signIn(email, password);
+      setLogin({
+        email: "",
+        password: "",
+      });
+      toast({
+        description: "Successfully Logged-in",
+        duration: 5000,
+        status: "success",
+        variant: "left-accent",
+        colorScheme: "blue",
+      });
+    } catch (error) {
+      toast({
+        title: "User Not Found",
+        description: "Please Login with the correct credentials or Click on Sign up to Register",
+        duration: 5000,
+        status: "error",
+        variant: "left-accent",
+        colorScheme: "red",
+      });
+      setError(true);
+    }
+    setIsLoading(false);
+    navigate({ pathname: "students" });
+  };
+
   return (
     <Flex
       bgGradient="linear(to-r, #1E63E1 50%, #fff 50%)"
@@ -54,7 +102,7 @@ const LoginPage = () => {
               Hello! Welcome back.
             </Text>
           </Box>
-          <Box as="form">
+          <Box as="form" onSubmit={handleSubmit}>
             <FormLabel color="gray.600">Email address</FormLabel>
             <InputGroup mb={5}>
               <InputLeftElement pointerEvents="none">
@@ -63,6 +111,7 @@ const LoginPage = () => {
               <Input
                 type="email"
                 name="email"
+                onChange={handleChange}
                 placeholder="Enter your email address"
                 borderColor="gray.300"
                 shadow="lg"
@@ -77,6 +126,7 @@ const LoginPage = () => {
               <Input
                 type="password"
                 name="password"
+                onChange={handleChange}
                 placeholder="Password"
                 borderColor="gray.300"
                 shadow="lg"
@@ -100,6 +150,8 @@ const LoginPage = () => {
               w="full"
               my={5}
               _hover={{ bg: "#1E63E1" }}
+              isLoading={isLoading}
+              type="submit"
             >
               Log in
             </Button>
