@@ -17,11 +17,10 @@ import {
 import NavBar from "../components/NavBar";
 import { AiFillHome } from "react-icons/ai";
 import {useAuth} from "../config/firebase"
+import { useNavigate } from "react-router";
 
 const AttendanceQuestion = () => {
   const [answer, setAnswer] = useState("");
-  const [toastDisplayed, setToastDisplayed] = useState(false);
-
   const locationRef = useRef(null);
   const toast = useToast();
   const currentUser = useAuth();
@@ -29,21 +28,29 @@ const AttendanceQuestion = () => {
     setAnswer(e.target.value);
   };
 
-  useEffect(() => {
-    if (!toastDisplayed) {
-      // Show the time-sensitive toast when the component mounts
-      toast({
-        description:
-          "This question is time-sensitive. Page will reset after 20 seconds.",
-        status: "info",
-        duration: 7000, // 20 seconds
-        colorScheme: "blue",
-      });
-      setToastDisplayed(true);
-    }
-  }, [toast, toastDisplayed]);
+  const navigate = useNavigate();
 
-  const questionText = "1. What is a unicorn in business?";
+  useEffect(() => {
+    // Show the time-sensitive toast when the component mounts
+    toast({
+      description: "This question is time-sensitive. Page will reset after 15 seconds.",
+      status: "info",
+      duration: 7000, // 20 seconds
+      colorScheme: "blue",
+    });
+    const timer = setTimeout(() => {
+      // Hide the question card after 20 seconds
+      navigate("/question-hidden"); // Navigate to the hidden route
+    }, 15000); // 20,000 milliseconds = 20 seconds
+
+    return () => {
+      clearTimeout(timer); // Clear the timer if the component unmounts
+    };
+  }, [navigate, toast]);
+
+  
+
+  const questionText = "1. In one word or phrase how are you feeling about the class today?";
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -76,6 +83,9 @@ const AttendanceQuestion = () => {
       colorScheme: "blue",
     });
     setAnswer("");
+
+    // Hide the card after the question has been submitted
+    navigate("/question-hidden")
   };
   
   return (
@@ -85,7 +95,7 @@ const AttendanceQuestion = () => {
       </Box>
 
       <Flex minH="50vh" justify="center" align="center">
-        <Box boxShadow="xl" p="6" rounded="md" bg="white">
+          <Box boxShadow="xl" p="6" rounded="md" bg="white">
           <Box as="form" onSubmit={handleFormSubmit}>
             <Text
               color="gray.500"

@@ -19,6 +19,7 @@ import LoadingIndicator from "./components/LoadingIndicator";
 import ErrorPage from "./pages/ErrorPage";
 import AbsenceReporting from "./pages/AbsenceReporting";
 import LeaveRequest from "./pages/LeaveRequest";
+import { AttendanceQuestionHidden } from "./pages/AttendanceQuestionHidden";
 
 function App() {
   //get user from firebase config
@@ -50,6 +51,7 @@ function App() {
           <Route exact path="/attendance-question" element={<AttendanceQuestion/>} />
           <Route exact path="/absence-reporting" element={<AbsenceReporting/>} />
           <Route exact path="/leave-request" element={<LeaveRequest/>} />
+          <Route exact path="/question-hidden" element={<AttendanceQuestionHidden/>} />
         </Route>
         <Route path="*" element={<ErrorPage />} />
         <Route
