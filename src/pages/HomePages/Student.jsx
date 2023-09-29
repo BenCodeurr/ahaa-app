@@ -19,7 +19,6 @@ const Student = () => {
           <Img src={attendance} />
           <Text>Attendance</Text>
         </Box>
-        
       </Flex>
 
       <div className="footer">
