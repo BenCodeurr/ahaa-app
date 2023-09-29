@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
-// import "./style.css";
 import logo from "../assets/logo_white.png";
 import "../fonts/fonts.css";
 import {

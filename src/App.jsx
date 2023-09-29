@@ -10,6 +10,7 @@ import LoginPage from "./pages/LoginPage";
 import SignUp from "./pages/SignUp";
 import Student from "./pages/HomePages/Student";
 import TeachingFellow from "./pages/HomePages/TeachingFellow";
+import AttendanceQuestion from "./pages/AttendanceQuestionPage";
 import Attendance from "./pages/Attendance";
 import { useAuth } from "./config/firebase";
 
@@ -31,6 +32,7 @@ function App() {
         <Route exact path="students" element={<Student />} />
         <Route exact path="attendance" element={<Attendance />} />
         <Route exact path="teaching-fellow" element={<TeachingFellow />} />
+        <Route exact path="attendance-question" element={<AttendanceQuestion/>} />
 
       </>
     )
