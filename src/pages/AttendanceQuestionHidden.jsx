@@ -12,7 +12,7 @@ export const AttendanceQuestionHidden = () => {
         <NavBar navHeading="Attendance Question" iconSrc={AiFillHome} navigatePage="/"/>
       </Box>
       <Flex minH="60vh" justify="center" align="center">
-        <Text color="#1E63E1" fontSize="4xl">Oops! Period for answering question is over!</Text>  
+        <Text color="#1E63E1" fontSize="4xl">Response Window Over</Text>  
       </Flex>
       <Box
           bg="#1E63E1"

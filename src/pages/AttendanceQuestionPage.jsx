@@ -33,7 +33,7 @@ const AttendanceQuestion = () => {
   useEffect(() => {
     // Show the time-sensitive toast when the component mounts
     toast({
-      description: "This question is time-sensitive. Page will reset after 15 seconds.",
+      description: "This question is time-sensitive. Page will reset after 30 seconds.",
       status: "info",
       duration: 7000, // 20 seconds
       colorScheme: "blue",
@@ -41,7 +41,7 @@ const AttendanceQuestion = () => {
     const timer = setTimeout(() => {
       // Hide the question card after 20 seconds
       navigate("/question-hidden"); // Navigate to the hidden route
-    }, 15000); // 20,000 milliseconds = 20 seconds
+    }, 30000); // 20,000 milliseconds = 20 seconds
 
     return () => {
       clearTimeout(timer); // Clear the timer if the component unmounts
