@@ -33,7 +33,11 @@ function Attendance() {
     <>
       <Box>
         <Box position="relative">
-          <NavBar navHeading="Attendance" iconSrc={AiFillHome} />
+          <NavBar
+            navHeading="Attendance"
+            iconSrc={AiFillHome}
+            navigatePage={"/"}
+          />
         </Box>
         <Flex
           minH="80vh"
@@ -42,7 +46,9 @@ function Attendance() {
           gap={5}
           flexDir="column"
         >
-          <Text fontSize="4xl" fontWeight="bold" color="#1E63E1">Scan QR Code to Answer Question(s)</Text>
+          <Text fontSize="4xl" fontWeight="bold" color="#1E63E1">
+            Scan QR Code to Answer Question(s)
+          </Text>
 
           {scanResult ? (
             <Box>
@@ -52,9 +58,18 @@ function Attendance() {
             <Box id="reader"></Box>
           )}
         </Flex>
-        <div className="footer">
-          <p>Copyright © 2023 | Ahaa Llc.</p>
-        </div>
+        <Box
+          bg="#1E63E1"
+          color="#fff"
+          position="fixed"
+          bottom={0}
+          w="full"
+          textAlign="center"
+          p={2}
+          fontWeight="bold"
+        >
+          <Text>Copyright © 2023 | Ahaa Llc.</Text>
+        </Box>
       </Box>
     </>
   );

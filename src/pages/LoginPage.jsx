@@ -35,10 +35,10 @@ const LoginPage = () => {
   const toast = useToast();
   const navigate = useNavigate();
 
-  const handleChange =(e)=> {
-     const { name, value } = e.target;
+  const handleChange = (e) => {
+    const { name, value } = e.target;
     setLogin((prev) => ({ ...prev, [name]: value }));
-  }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -60,7 +60,8 @@ const LoginPage = () => {
     } catch (error) {
       toast({
         title: "User Not Found",
-        description: "Please Login with the correct credentials or Click on Sign up to Register",
+        description:
+          "Please Login with the correct credentials or Click on Sign up to Register",
         duration: 5000,
         status: "error",
         variant: "left-accent",
@@ -69,7 +70,7 @@ const LoginPage = () => {
       setError(true);
     }
     setIsLoading(false);
-    navigate({ pathname: "students" });
+    navigate({ pathname: "/" });
   };
 
   return (
@@ -79,31 +80,45 @@ const LoginPage = () => {
       justify="center"
       align="center"
     >
-      <Flex rounded="xl" shadow="dark-lg" padding={5} width={980}>
+      <Flex
+        rounded="3xl"
+        shadow="dark-lg"
+        padding={5}
+        width={980}
+        mx={{ base: 2, lg: 0 }}
+        bg={{base: "#f6f6f6", lg: "transparent"}}
+      >
         <Flex
           w="50%"
           align="start"
           justify="center"
           flexDir="column"
           color="#fff"
+          display={{ base: "none", lg: "flex" }}
         >
           <Box mx="auto">
             <Flex align="center" gap={10}>
               <Heading textTransform="uppercase">Log in</Heading>
               <Icon as={BsArrowRight} fontSize="2xl" />
             </Flex>
-            <Text fontSize="xl">Your favorite attendance management system</Text>
+            <Text fontSize="xl">
+              Your favorite attendance management system
+            </Text>
           </Box>
         </Flex>
         <Flex flexDir="column" className="right-side" mx="auto" my={5} gap={5}>
           <Box className="logo" textAlign="center">
             <Img src={logo} alt="Ahaa Logo" />
-            <Text fontSize="sm" fontWeight="semibold" color="gray.400">
+            <Text fontSize="sm" fontWeight="semibold" color={{base: "gray.600", lg: "gray.400"}}>
               Hello! Welcome back.
             </Text>
           </Box>
           <Box as="form" onSubmit={handleSubmit}>
-            <FormLabel color="gray.600">Email address</FormLabel>
+            <FormLabel
+              color={{base: "gray.700", lg: "gray.600"}}
+            >
+              Email address
+            </FormLabel>
             <InputGroup mb={5}>
               <InputLeftElement pointerEvents="none">
                 <Icon as={MdEmail} color="#1E63E1" />
@@ -114,11 +129,16 @@ const LoginPage = () => {
                 onChange={handleChange}
                 placeholder="Enter your email address"
                 borderColor="gray.300"
+                bg="#fff"
                 shadow="lg"
                 _placeholder={{ fontSize: "xs" }}
               />
             </InputGroup>
-            <FormLabel color="gray.600">Password</FormLabel>
+            <FormLabel
+              color={{base: "gray.700", lg: "gray.600"}}
+            >
+              Password
+            </FormLabel>
             <InputGroup mb={5}>
               <InputLeftElement pointerEvents="none">
                 <Icon as={GoPasskeyFill} color="#1E63E1" />
@@ -129,12 +149,13 @@ const LoginPage = () => {
                 onChange={handleChange}
                 placeholder="Password"
                 borderColor="gray.300"
+                bg="#fff"
                 shadow="lg"
                 _placeholder={{ fontSize: "xs" }}
               />
             </InputGroup>
             <Flex fontSize="sm" justify="space-between">
-              <HStack>
+              <HStack fontWeight={{base: "bold", lg: "normal"}}>
                 <Checkbox defaultChecked size="sm">
                   Remember me
                 </Checkbox>
@@ -146,6 +167,7 @@ const LoginPage = () => {
             <Button
               variant="solid"
               bg="#1E63E1"
+              shadow={{ base: "lg", lg: "none" }}
               color="#fff"
               w="full"
               my={5}
@@ -155,9 +177,9 @@ const LoginPage = () => {
             >
               Log in
             </Button>
-            <Text>
+            <Text fontWeight={{base: "bold", lg: "normal"}}>
               {"Don't have an account? "}
-              <Text as={Link} to="signup" color="#1E63E1" fontWeight="bold">
+              <Text as={Link} to="/signup" color="#1E63E1" fontWeight="bold">
                 Sign Up
               </Text>
             </Text>
