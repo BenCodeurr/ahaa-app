@@ -77,6 +77,7 @@ const AbsenceReporting = () => {
       variant: "left-accent",
       colorScheme: "blue",
       position: "top-right",
+      isClosable: true,
     });
   };
 

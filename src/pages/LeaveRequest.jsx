@@ -75,6 +75,7 @@ const AbsenceReporting = () => {
       variant: "left-accent",
       colorScheme: "blue",
       position: "top-right",
+      isClosable: true,
     });
     
     // Reset the form fields

@@ -81,6 +81,7 @@ const AttendanceQuestion = () => {
       status: "info",
       duration: 5000, // 20 seconds
       colorScheme: "blue",
+      isClosable: true,
     });
     setAnswer("");
 
