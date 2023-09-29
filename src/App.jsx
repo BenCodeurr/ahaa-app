@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
 import {
+  Navigate,
   Route,
   RouterProvider,
   createBrowserRouter,
@@ -13,6 +14,11 @@ import TeachingFellow from "./pages/HomePages/TeachingFellow";
 import AttendanceQuestion from "./pages/AttendanceQuestionPage";
 import Attendance from "./pages/Attendance";
 import { useAuth } from "./config/firebase";
+import RootLayout from "./layout/RootLayout";
+import LoadingIndicator from "./components/LoadingIndicator";
+import ErrorPage from "./pages/ErrorPage";
+import AbsenceReporting from "./pages/AbsenceReporting";
+import LeaveRequest from "./pages/LeaveRequest";
 
 function App() {
   //get user from firebase config
@@ -27,12 +33,36 @@ function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <>
-        <Route path="/" element={<LoginPage />} />
+      <Route
+          path="/"
+          element={
+            isAuthenticated ? (
+              <RootLayout isAuthenticated={isAuthenticated} />
+            ) : isLoggedOut ? (
+              <Navigate to="/signin" /> // Redirect to login when logged out
+            ) : (
+              <LoadingIndicator />
+            )
+          }
+        >
+          <Route index element={isAuthenticated ? <Student /> : null} />
+          <Route exact path="/attendance" element={<Attendance />} />
+          <Route exact path="/attendance-question" element={<AttendanceQuestion/>} />
+          <Route exact path="/absence-reporting" element={<AbsenceReporting/>} />
+          <Route exact path="/leave-request" element={<LeaveRequest/>} />
+        </Route>
+        <Route path="*" element={<ErrorPage />} />
+        <Route
+          path="/signin"
+          element={isAuthenticated ? <Navigate to="/" /> : <LoginPage />}
+        />
+        <Route exact path="/signup" element={<SignUp />} />
+        {/* <Route path="/" element={<LoginPage />} />
         <Route exact path="signup" element={<SignUp />} />
         <Route exact path="students" element={<Student />} />
         <Route exact path="attendance" element={<Attendance />} />
-        <Route exact path="teaching-fellow" element={<TeachingFellow />} />
-        <Route exact path="attendance-question" element={<AttendanceQuestion/>} />
+        <Route exact path="teaching-fellow" element={<TeachingFellow />} /> */}
+        {/* <Route exact path="attendance-question" element={<AttendanceQuestion/>} /> */}
 
       </>
     )
