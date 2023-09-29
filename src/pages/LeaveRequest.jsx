@@ -70,7 +70,7 @@ const AbsenceReporting = () => {
     toast({
       title: "Success",
       description: "Your absence report form has been submitted",
-      duration: 8000,
+      duration: 5000,
       status: "success",
       variant: "left-accent",
       colorScheme: "blue",
